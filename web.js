@@ -1,11 +1,19 @@
 var express = require("express");
+var fs = require("fs");
+
 var app = express();
 app.use(express.logger());
 
 app.use(express.static(__dirname + '/static'));
 
 app.get('/', function(request, response) {
-  response.send('Hello World!');
+ 	
+	 fs.readFile('index.html',function(err,contents){
+
+                        response.write(contents);
+						
+           		response.end();
+        });
 });
 
 var port = process.env.PORT || 5000;
