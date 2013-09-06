@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Chat built with node.js</title>
+
+<script type="text/javascript" src="/static/jquery.js"></script>
+
+
+<style>
+*{padding: 0px; margin: 0px;}
+
+#chat-window{
+	
+	margin: auto;
+
+	height: 500px;
+
+	width:760px;
+
+	border:2px solid black;
+
+}
+
+#users{
+
+	float:left;
+
+	border-right: 1px solid black;
+
+	width: 250px;
+
+
+	height: 500px;
+}
+
+#chat-section{
+
+	height: 500px;
+
+	width: 500px;
+
+	float :left;
+}
+
+#messages{
+
+	height: 450px;
+
+	border-bottom:2px solid black;
+}
+
+#text-input{
+
+	float: right;
+
+	padding-top: 20px;
+}
+
+#text-input input[type=text] {
+
+
+	width: 300px;
+}
+
+#text-input a{
+
+	border:1px solid black;
+
+
+}
+
+
+
+</style>
+</head>
+
+<body>
+
+	<div id="chat-window">
+
+		<div id="users">
+
+		</div>
+
+
+		<div id="chat-section">
+
+			<div id="status"> </div>
+			<div id="messages">
+
+			</div>
+
+
+			<div id="text-input">
+
+			<input type="text" id="message" name="message" placeholder="type something.."/>	
+
+			<a href="#"> Send</a>
+			</div>
+				
+		</div>
+
+	</div>
+
+</body>
+</html>
