@@ -4,19 +4,54 @@ var fs = require("fs");
 var app = express();
 app.use(express.logger());
 
-app.use(express.static(__dirname + '/static'));
+// New call to compress content
+app.use(express.compress());
 
-app.get('/', function(request, response) {
- 	
-	 fs.readFile('index.html',function(err,contents){
+app.use("/static",express.static(__dirname + '/static'));
+	
 
-                        response.write(contents);
+app.get('/', function(req, res){
+	
+		 fs.readFile('index.html',function(err,contents){
+
+                        res.write(contents);
 						
-           		response.end();
+           		res.end();
         });
+
+});
+var port = process.env.PORT || 5000;
+
+var io_server = app.listen(port, function() {
+  console.log("Listening on " + port);
 });
 
-var port = process.env.PORT || 5000;
-app.listen(port, function() {
-  console.log("Listening on " + port);
+
+var io = require("socket.io").listen(io_server,{log: false});
+
+
+io.sockets.on('connection', function(client) {
+
+  console.log("Client connected...");
+
+  client.on('join', function(name) { 
+		
+		client.set('nickname', name); 
+
+	      console.log("Client's nickname :"+name);
+	}); 
+	
+
+    client.on('messages', function (data) {
+		
+	client.get('nickname', function(err, name) {
+
+			client.broadcast.emit("chat", name + ": " + data);
+
+			});
+
+		});
+
+
+
 });
