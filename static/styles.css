@@ -1,0 +1,68 @@
+
+*{padding: 0px; margin: 0px;}
+
+#chat-window{
+	
+	margin: auto;
+	
+	margin-top:50px;
+
+	height:550px;
+
+	width:760px;
+
+	border:2px solid black;
+
+}
+
+#users{
+
+	float:left;
+
+	border-right: 1px solid black;
+
+	width: 250px;
+
+
+	height: 550px;
+}
+
+#chat-section{
+
+	height: 500px;
+
+	width: 500px;
+
+	float :left;
+}
+
+#messages{
+
+	height: 450px;
+
+	border-bottom:2px solid black;
+
+	overflow : auto;
+}
+
+#text-input{
+
+	float: right;
+
+	padding-top: 20px;
+}
+
+#text-input input[type=text] {
+
+
+	width: 300px;
+}
+
+#text-input a{
+
+	border:1px solid black;
+
+
+}
+
+

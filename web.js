@@ -34,15 +34,21 @@ io.configure(function () {
   io.set("polling duration", 10); 
 });
 
+var users = [];
+
 io.sockets.on('connection', function(client) {
 
   console.log("Client connected...");
 
   client.on('join', function(name) { 
 		
-		client.set('nickname', name); 
+	      client.set('nickname', name); 
+		
+	      users.push(name);
 
 	      console.log("Client's nickname :"+name);
+		
+	      console.log("Clients connected :"+users.length);
 	}); 
 	
 
@@ -56,6 +62,14 @@ io.sockets.on('connection', function(client) {
 
 		});
 
+	client.on('disconnect', function (name) {
+      	
+	console.log('socket closed,removing user :'+name);
+      	
+	var index = users.indexOf(name);
+	
+		users.splice(index,1);
 
-
+	 console.log("Clients connected :"+users.length);
+    });
 });
