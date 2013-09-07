@@ -15,7 +15,7 @@
 
 $( document ).ready(function() {
 
-var server = io.connect('http://localhost:5000');
+var server = io.connect(window.location.hostname);
 
 
 	server.on('connect', function (data) {
