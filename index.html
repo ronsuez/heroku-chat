@@ -33,7 +33,6 @@ var server = io.connect(window.location.hostname);
 		});
 
 		server.on('new-user',function(data){
-			//$("#users-list").empty();
 			add_user(data);
 		});
 	
