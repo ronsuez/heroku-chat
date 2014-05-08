@@ -12,7 +12,7 @@ app.use("/static",express.static(__dirname + '/static'));
 
 app.get('/', function(req, res){
 	
-		 fs.readFile('index.html',function(err,contents){
+		 fs.readFile('static/index.html',function(err,contents){
 
                         res.write(contents);
 						
