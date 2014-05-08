@@ -22,17 +22,20 @@ var server = io.connect(window.location.hostname);
 				
 				nickname = prompt("What is your nickname?");
 				server.emit('join', nickname);
-		
-			$("#status").html("Online");	
+				add_user(nickname);
+			$("#status").html("Online");		
 	
 		});
 
 		server.on('chat', function (data) {
-
+             
 			$("#messages").append("<h3>"+data+"</h3>");
 		});
 
-
+		server.on('new-user',function(data){
+			//$("#users-list").empty();
+			add_user(data);
+		});
 	
 	$('#chat-form').submit(function(event){
 		
@@ -54,6 +57,13 @@ var server = io.connect(window.location.hostname);
 			$("#messages").append("<h3>"+nickname+":"+message+"</h3>");
 			
 		}
+
+	function add_user(nickname){
+ 
+             
+			$("#users-list").append("<li>"+nickname+"</li>");
+			
+		}
 });
 
 		
@@ -69,7 +79,7 @@ var server = io.connect(window.location.hostname);
 	<div id="chat-window">
 
 		<div id="users">
-
+			<ul id="users-list"></ul>
 		</div>
 
 

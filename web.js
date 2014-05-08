@@ -2,7 +2,7 @@ var express = require("express");
 var fs = require("fs");
 
 var app = express();
-app.use(express.logger());
+app.use(express.logger('env'));
 
 // New call to compress content
 app.use(express.compress());
@@ -47,7 +47,14 @@ io.sockets.on('connection', function(client) {
 	      users.push(name);
 
 	      console.log("Client's nickname :"+name);
-		
+          
+          client.broadcast.emit("new-user",name);
+
+          for(i = 0; i < users.length ; i++){
+          		if(users[i] != name)
+          		client.broadcast.emit("new-user",users[i]);
+          }
+       
 	      console.log("Clients connected :"+users.length);
 	}); 
 	
@@ -55,8 +62,10 @@ io.sockets.on('connection', function(client) {
     client.on('messages', function (data) {
 		
 	client.get('nickname', function(err, name) {
-
-			client.broadcast.emit("chat", name + ": " + data);
+			
+			console.log("Message:"+ name +":"+data);
+             
+			client.broadcast.emit("chat",name + ": " + data);
 
 			});
 
